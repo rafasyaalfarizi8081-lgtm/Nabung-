@@ -1,0 +1,2039 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Ultimate Saving Challenge</title>
+
+<style>
+*{
+box-sizing:border-box;
+margin:0;
+padding:0;
+}
+
+body{
+font-family:Arial,sans-serif;
+min-height:100vh;
+color:white;
+overflow-x:hidden;
+background:
+radial-gradient(circle at 10% 10%,#00eaff25,transparent 25%),
+radial-gradient(circle at 90% 20%,#7b2cff25,transparent 25%),
+linear-gradient(135deg,#070b16,#10182b,#080d18);
+}
+
+.bg{
+position:fixed;
+z-index:-1;
+opacity:.1;
+font-size:55px;
+pointer-events:none;
+animation:float 5s ease-in-out infinite;
+}
+
+.bg1{top:8%;left:3%}
+.bg2{top:35%;right:3%;animation-delay:1s}
+.bg3{bottom:10%;left:5%;animation-delay:2s}
+.bg4{bottom:5%;right:7%;animation-delay:3s}
+
+@keyframes float{
+0%,100%{transform:translateY(0) rotate(0)}
+50%{transform:translateY(-15px) rotate(6deg)}
+}
+
+header{
+padding:25px 15px 10px;
+text-align:center;
+}
+
+header h1{
+font-size:29px;
+font-weight:900;
+background:linear-gradient(90deg,#00eaff,#7b8cff,#fff);
+-webkit-background-clip:text;
+color:transparent;
+}
+
+header p{
+margin-top:7px;
+color:#ffffff88;
+}
+
+.container{
+width:min(1100px,94%);
+margin:auto;
+}
+
+.card,
+.settings{
+margin-top:18px;
+padding:20px;
+border-radius:22px;
+background:linear-gradient(145deg,#ffffff12,#ffffff06);
+border:1px solid #ffffff18;
+box-shadow:0 15px 45px #0008;
+backdrop-filter:blur(15px);
+}
+
+.settings h2{
+margin-bottom:8px;
+}
+
+.settings-info{
+color:#ffffff77;
+font-size:14px;
+margin-bottom:15px;
+line-height:1.5;
+}
+
+input{
+width:100%;
+padding:14px;
+margin:6px 0;
+border-radius:12px;
+border:1px solid #ffffff20;
+background:#050912;
+color:white;
+outline:none;
+font-size:15px;
+}
+
+input:focus{
+border-color:#00eaff88;
+}
+
+button{
+border:0;
+border-radius:12px;
+padding:12px 16px;
+color:white;
+font-weight:bold;
+cursor:pointer;
+transition:.2s;
+}
+
+button:active{
+transform:scale(.97);
+}
+
+.start-button{
+width:100%;
+margin-top:10px;
+background:linear-gradient(90deg,#008cff,#635bff);
+box-shadow:0 8px 25px #315cff33;
+}
+
+.hidden{
+display:none!important;
+}
+
+.dashboard{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:15px;
+}
+
+.balance-card{
+min-height:245px;
+background:
+radial-gradient(circle at 90% 10%,#00eaff20,transparent 35%),
+linear-gradient(145deg,#121b2d,#0a111f);
+}
+
+.wallet-label{
+color:#ffffff66;
+font-size:12px;
+letter-spacing:1.5px;
+}
+
+.user-name{
+margin-top:5px;
+font-size:21px;
+}
+
+.balance{
+margin-top:30px;
+font-size:35px;
+font-weight:900;
+}
+
+.balance-label{
+color:#ffffff66;
+font-size:13px;
+margin-top:4px;
+}
+
+.target-small{
+margin-top:22px;
+color:#ffffff99;
+font-size:14px;
+}
+
+.target-small b{
+color:white;
+}
+
+.target-title{
+color:#ffffff77;
+font-size:13px;
+}
+
+.item-name{
+margin-top:8px;
+font-size:25px;
+word-break:break-word;
+}
+
+.target-icon{
+font-size:48px;
+margin-top:10px;
+}
+
+.progress-area{
+margin-top:20px;
+}
+
+.progress-top{
+display:flex;
+justify-content:space-between;
+font-size:14px;
+margin-bottom:7px;
+}
+
+.progress{
+width:100%;
+height:13px;
+border-radius:20px;
+overflow:hidden;
+background:#0009;
+}
+
+.progress-bar{
+width:0%;
+height:100%;
+border-radius:20px;
+background:linear-gradient(90deg,#00c6ff,#635bff);
+transition:width .6s ease;
+}
+
+.target-info{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:10px;
+margin-top:15px;
+}
+
+.info-box{
+padding:12px;
+border-radius:13px;
+background:#ffffff08;
+border:1px solid #ffffff0c;
+}
+
+.info-box small{
+display:block;
+color:#ffffff55;
+margin-bottom:5px;
+}
+
+.info-box b{
+font-size:16px;
+}
+
+.stats{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:10px;
+margin-top:15px;
+}
+
+.stat{
+text-align:center;
+padding:15px 5px;
+border-radius:15px;
+background:#ffffff08;
+}
+
+.stat b{
+display:block;
+font-size:22px;
+margin-bottom:5px;
+}
+
+.stat small{
+color:#ffffff66;
+font-size:11px;
+}
+
+.rank-box{
+margin-top:15px;
+padding:18px;
+border-radius:17px;
+background:linear-gradient(90deg,#00eaff0d,#7b2cff0d);
+text-align:center;
+}
+
+.rank-label{
+font-size:11px;
+color:#ffffff55;
+letter-spacing:1px;
+}
+
+.rank{
+font-size:25px;
+font-weight:900;
+margin-top:6px;
+}
+
+.xp{
+height:9px;
+margin-top:12px;
+background:#0009;
+border-radius:20px;
+overflow:hidden;
+}
+
+.xp-bar{
+width:0%;
+height:100%;
+background:linear-gradient(90deg,#00eaff,#7b5cff);
+transition:.5s;
+}
+
+.xp-text{
+margin-top:7px;
+color:#ffffff66;
+font-size:12px;
+}
+
+  .milestones{
+display:grid;
+grid-template-columns:repeat(5,1fr);
+gap:7px;
+margin-top:15px;
+}
+
+.milestone{
+padding:11px 3px;
+text-align:center;
+border-radius:13px;
+background:#ffffff06;
+border:1px solid #ffffff0c;
+opacity:.35;
+font-size:11px;
+}
+
+.milestone span{
+display:block;
+font-size:22px;
+margin-bottom:3px;
+}
+
+.milestone.active{
+opacity:1;
+border-color:#00eaff55;
+background:#00eaff0d;
+}
+
+.chart-container{
+margin-top:15px;
+}
+
+canvas{
+display:block;
+width:100%;
+height:240px;
+border-radius:15px;
+background:#050912;
+border:1px solid #ffffff0d;
+}
+
+.days-list{
+margin-top:12px;
+}
+
+.day{
+display:flex;
+align-items:center;
+gap:10px;
+padding:12px;
+margin:8px 0;
+border-radius:14px;
+background:#ffffff06;
+border:1px solid #ffffff0b;
+}
+
+.day.saved{
+background:#00ff8810;
+border-color:#00ff8830;
+}
+
+.day-number{
+width:40px;
+height:40px;
+min-width:40px;
+display:flex;
+justify-content:center;
+align-items:center;
+border-radius:50%;
+background:#ffffff0d;
+font-weight:bold;
+}
+
+.day-info{
+flex:1;
+min-width:0;
+}
+
+.day-info b{
+font-size:14px;
+}
+
+.day-info small{
+display:block;
+color:#ffffff55;
+margin-top:4px;
+font-size:11px;
+}
+
+.check{
+color:#00ff88;
+font-size:22px;
+}
+
+.save-day{
+background:linear-gradient(90deg,#008cff,#635bff);
+padding:9px 12px;
+}
+
+.cancel-day{
+background:#ff3b55;
+padding:8px 10px;
+font-size:12px;
+}
+
+.message{
+display:none;
+margin-top:12px;
+padding:12px;
+border-radius:12px;
+background:#ffb30012;
+border:1px solid #ffb30030;
+color:#ffd477;
+font-size:13px;
+line-height:1.5;
+}
+
+.actions{
+display:flex;
+gap:10px;
+margin:18px 0 30px;
+}
+
+.actions button{
+flex:1;
+}
+
+.edit{
+background:#ffffff12;
+}
+
+.reset{
+background:#ff304522;
+}
+
+@media(max-width:750px){
+
+header h1{
+font-size:24px;
+}
+
+.dashboard{
+grid-template-columns:1fr;
+}
+
+.balance{
+font-size:30px;
+}
+
+.stats{
+grid-template-columns:repeat(3,1fr);
+}
+
+.milestones{
+grid-template-columns:repeat(5,1fr);
+}
+
+.day{
+padding:10px;
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="bg bg1">💰</div>
+<div class="bg bg2">🎯</div>
+<div class="bg bg3">💵</div>
+<div class="bg bg4">🏆</div>
+
+<header>
+
+<h1>💎 ULTIMATE SAVING</h1>
+
+<p>
+Satu langkah kecil setiap hari menuju impianmu.
+</p>
+
+</header>
+
+<div class="container">
+
+<div class="settings" id="settings">
+
+<h2>⚙️ Atur Tabungan</h2>
+
+<p class="settings-info">
+Tentukan target, jumlah hari, dan nominal yang ingin kamu tabung setiap hari.
+</p>
+
+<input id="userName" placeholder="Nama kamu">
+
+<input id="itemName" placeholder="Barang yang ingin dibeli">
+
+<input
+id="targetMoney"
+type="number"
+min="1"
+placeholder="Target uang, contoh: 2000000">
+
+<input
+id="targetDays"
+type="number"
+min="1"
+max="3650"
+placeholder="Jumlah hari, contoh: 100">
+
+<input
+id="dailyMoney"
+type="number"
+min="1"
+placeholder="Tabungan per hari, contoh: 20000">
+
+<div
+class="message"
+id="settingsMessage">
+</div>
+
+<button
+class="start-button"
+id="startButton">
+🚀 SIMPAN PENGATURAN
+</button>
+
+</div>
+
+
+<div id="app" class="hidden">
+
+<div class="dashboard">
+
+<div class="card balance-card">
+
+<div class="wallet-label">
+SAVING WALLET
+</div>
+
+<div
+class="user-name"
+id="displayName">
+User
+</div>
+
+<div
+class="balance"
+id="balance">
+Rp0
+</div>
+
+<div class="balance-label">
+Total uang yang sudah ditabung
+</div>
+
+<div class="target-small">
+Target:
+<b id="displayTarget">Rp0</b>
+</div>
+
+</div>
+
+
+<div class="card">
+
+<div class="target-title">
+🎯 TARGET IMPIAN
+</div>
+
+<div
+class="item-name"
+id="displayItem">
+Barang Impian
+</div>
+
+<div class="target-icon">
+🎯
+</div>
+
+<div class="progress-area">
+
+<div class="progress-top">
+
+<b>Progress</b>
+
+<span id="percent">0%</span>
+
+</div>
+
+<div class="progress">
+
+<div
+class="progress-bar"
+id="progressBar">
+</div>
+
+</div>
+
+</div>
+
+<div class="target-info">
+
+<div class="info-box">
+
+<small>Kurang</small>
+
+<b id="remainingMoney">
+Rp0
+</b>
+
+</div>
+
+<div class="info-box">
+
+<small>Estimasi</small>
+
+<b id="estimatedDate">
+-
+</b>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+
+<div class="card">
+
+<h2>📊 Statistik</h2>
+
+<div class="stats">
+
+<div class="stat">
+
+<b id="savedDays">0</b>
+
+<small>Hari Nabung</small>
+
+</div>
+
+<div class="stat">
+
+<b id="streak">0🔥</b>
+
+<small>Streak</small>
+
+</div>
+
+<div class="stat">
+
+<b id="remainingDays">0</b>
+
+<small>Sisa Hari</small>
+
+</div>
+
+</div>
+
+<div class="rank-box">
+
+<div class="rank-label">
+RANK SEKARANG
+</div>
+
+<div
+class="rank"
+id="rank">
+🌱 PEMULA
+</div>
+
+<div class="xp">
+
+<div
+class="xp-bar"
+id="xpBar">
+</div>
+
+</div>
+
+<div
+class="xp-text"
+id="xpText">
+XP 0
+</div>
+
+</div>
+
+</div>
+
+
+<div class="card">
+
+<h2>🏆 Milestone</h2>
+
+<div class="milestones">
+
+<div
+class="milestone"
+id="m10">
+<span>🥉</span>
+10%
+</div>
+
+<div
+class="milestone"
+id="m25">
+<span>🥈</span>
+25%
+</div>
+
+<div
+class="milestone"
+id="m50">
+<span>🥇</span>
+50%
+</div>
+
+<div
+class="milestone"
+id="m75">
+<span>💎</span>
+75%
+</div>
+
+<div
+class="milestone"
+id="m100">
+<span>👑</span>
+100%
+</div>
+
+</div>
+
+</div>
+
+
+<div class="card chart-container">
+
+<h2>📈 Grafik Tabungan</h2>
+
+<canvas
+id="chart"
+width="900"
+height="300">
+</canvas>
+
+</div>
+
+
+<div class="card">
+
+<h2>📅 Perjalanan Tabungan</h2>
+
+<p
+style="
+color:#ffffff55;
+font-size:13px;
+margin-top:6px;
+">
+Tabung satu hari pada satu waktu.
+</p>
+
+<div
+class="days-list"
+id="daysList">
+</div>
+
+</div>
+
+
+<div class="actions">
+
+<button
+class="edit"
+id="editButton">
+⚙️ Ubah Pengaturan
+</button>
+
+<button
+class="reset"
+id="resetButton">
+🗑️ Reset
+</button>
+
+</div>
+
+</div>
+
+<script>
+
+let config=null;
+let history=[];
+
+
+/* =========================
+   LOAD STORAGE
+========================= */
+
+function loadStorage(){
+
+try{
+
+config=
+JSON.parse(
+localStorage.getItem("savingConfig")
+)||null;
+
+history=
+JSON.parse(
+localStorage.getItem("savingHistory")
+)||[];
+
+
+/* DATA VERSI LAMA */
+
+if(!config){
+
+config=
+JSON.parse(
+localStorage.getItem(
+"ultimateSavingConfig"
+)
+)||null;
+
+}
+
+
+if(history.length===0){
+
+const oldHistory=
+JSON.parse(
+localStorage.getItem(
+"ultimateSavingHistory"
+)
+)||[];
+
+if(oldHistory.length){
+
+history=oldHistory;
+
+}
+
+}
+
+}catch(error){
+
+config=null;
+history=[];
+
+}
+
+}
+
+
+/* =========================
+   SAVE STORAGE
+========================= */
+
+function saveStorage(){
+
+localStorage.setItem(
+"savingConfig",
+JSON.stringify(config)
+);
+
+localStorage.setItem(
+"savingHistory",
+JSON.stringify(history)
+);
+
+}
+
+
+/* =========================
+   RUPIAH
+========================= */
+
+function rupiah(value){
+
+return "Rp"+
+Number(value||0)
+.toLocaleString("id-ID");
+
+}
+
+
+/* =========================
+   DATE
+========================= */
+
+function formatDate(date){
+
+return new Date(date)
+.toLocaleDateString(
+"id-ID",
+{
+day:"2-digit",
+month:"2-digit",
+year:"numeric"
+}
+);
+
+}
+
+
+/* =========================
+   TOTAL MONEY
+========================= */
+
+function totalMoney(){
+
+if(!config)return 0;
+
+return history
+.filter(item=>item.saved)
+.length
+*config.daily;
+
+}
+
+
+/* =========================
+   SAVED COUNT
+========================= */
+
+function savedCount(){
+
+return history
+.filter(item=>item.saved)
+.length;
+
+}
+
+
+/* =========================
+   FIND DAY
+========================= */
+
+function dayData(day){
+
+return history.find(
+item=>
+Number(item.day)===Number(day)
+);
+
+}
+
+
+/* =========================
+   STREAK
+========================= */
+
+function getStreak(){
+
+if(!config)return 0;
+
+let streak=0;
+
+for(
+let i=1;
+i<=config.days;
+i++
+){
+
+if(dayData(i)){
+
+streak++;
+
+}else{
+
+break;
+
+}
+
+}
+
+return streak;
+
+}
+
+
+/* =========================
+   NEXT DAY
+========================= */
+
+function nextDay(){
+
+if(!config)return null;
+
+for(
+let i=1;
+i<=config.days;
+i++
+){
+
+if(!dayData(i)){
+
+return i;
+
+}
+
+}
+
+return null;
+
+}
+
+
+/* =========================
+   SAVE SETTINGS
+========================= */
+
+function saveSettings(){
+
+const name=
+document
+.getElementById("userName")
+.value
+.trim()
+||"User";
+
+const item=
+document
+.getElementById("itemName")
+.value
+.trim()
+||"Barang Impian";
+
+const target=
+Number(
+document
+.getElementById("targetMoney")
+.value
+);
+
+const days=
+Number(
+document
+.getElementById("targetDays")
+.value
+);
+
+const daily=
+Number(
+document
+.getElementById("dailyMoney")
+.value
+);
+
+const message=
+document
+.getElementById(
+"settingsMessage"
+);
+
+
+if(
+target<=0||
+days<=0||
+daily<=0
+){
+
+message.style.display="block";
+
+message.textContent=
+"⚠️ Isi semua data dengan angka yang benar.";
+
+return;
+
+}
+
+
+config={
+name:name,
+item:item,
+target:target,
+days:days,
+daily:daily
+};
+
+history=[];
+
+saveStorage();
+
+message.style.display="none";
+
+loadApp();
+
+}
+
+
+/* =========================
+   LOAD APP
+========================= */
+
+function loadApp(){
+
+const settings=
+document.getElementById(
+"settings"
+);
+
+const app=
+document.getElementById(
+"app"
+);
+
+
+if(!config){
+
+settings
+.classList
+.remove("hidden");
+
+app
+.classList
+.add("hidden");
+
+return;
+
+}
+
+
+settings
+.classList
+.add("hidden");
+
+app
+.classList
+.remove("hidden");
+
+
+document
+.getElementById(
+"displayName"
+)
+.textContent=
+config.name;
+
+
+document
+.getElementById(
+"displayItem"
+)
+.textContent=
+config.item;
+
+
+document
+.getElementById(
+"displayTarget"
+)
+.textContent=
+rupiah(config.target);
+
+
+updateDisplay();
+
+}
+
+
+/* =========================
+   UPDATE
+========================= */
+
+function updateDisplay(){
+
+if(!config)return;
+
+const money=
+totalMoney();
+
+const count=
+savedCount();
+
+const percent=
+Math.min(
+100,
+(money/config.target)*100
+);
+
+const missing=
+Math.max(
+0,
+config.target-money
+);
+
+
+/* SALDO */
+
+document
+.getElementById("balance")
+.textContent=
+rupiah(money);
+
+
+/* PERSEN */
+
+document
+.getElementById("percent")
+.textContent=
+percent.toFixed(0)+"%";
+
+
+/* PROGRESS */
+
+document
+.getElementById(
+"progressBar"
+)
+.style.width=
+percent+"%";
+
+
+/* UANG KURANG */
+
+document
+.getElementById(
+"remainingMoney"
+)
+.textContent=
+rupiah(missing);
+
+
+/* HARI */
+
+document
+.getElementById(
+"savedDays"
+)
+.textContent=
+count;
+
+
+document
+.getElementById(
+"remainingDays"
+)
+.textContent=
+Math.max(
+0,
+config.days-count
+);
+
+
+/* STREAK */
+
+document
+.getElementById(
+"streak"
+)
+.textContent=
+getStreak()+"🔥";
+
+
+/* RANK */
+
+document
+.getElementById(
+"rank"
+)
+.textContent=
+getRank(percent);
+
+
+/* XP */
+
+const xp=
+count*100;
+
+document
+.getElementById(
+"xpText"
+)
+.textContent=
+"XP "+xp;
+
+
+document
+.getElementById(
+"xpBar"
+)
+.style.width=
+((xp%1000)/10)+"%";
+
+
+updateEstimate(missing);
+
+updateMilestones(percent);
+
+renderDays();
+
+drawChart();
+
+}
+
+
+/* =========================
+   ESTIMASI
+========================= */
+
+function updateEstimate(missing){
+
+const element=
+document
+.getElementById(
+"estimatedDate"
+);
+
+
+if(missing<=0){
+
+element.textContent=
+"Tercapai 🎉";
+
+return;
+
+}
+
+
+const daysNeeded=
+Math.ceil(
+missing/config.daily
+);
+
+
+const date=
+new Date();
+
+date.setDate(
+date.getDate()+daysNeeded
+);
+
+
+element.textContent=
+date.toLocaleDateString(
+"id-ID",
+{
+day:"numeric",
+month:"short"
+}
+);
+
+}
+
+
+/* =========================
+   RANK
+========================= */
+
+function getRank(percent){
+
+if(percent>=100)
+return "👑 MASTER";
+
+if(percent>=80)
+return "🔥 LEGEND";
+
+if(percent>=60)
+return "💎 PRO";
+
+if(percent>=40)
+return "⚡ ADVANCED";
+
+if(percent>=20)
+return "🥉 PEMULA+";
+
+return "🌱 PEMULA";
+
+}
+
+
+/* =========================
+   MILESTONE
+========================= */
+
+function updateMilestones(percent){
+
+const data=[
+
+["m10",10],
+["m25",25],
+["m50",50],
+["m75",75],
+["m100",100]
+
+];
+
+
+data.forEach(
+function(item){
+
+const element=
+document
+.getElementById(
+item[0]
+);
+
+if(element){
+
+element
+.classList
+.toggle(
+"active",
+percent>=item[1]
+);
+
+}
+
+});
+
+}
+
+
+/* =========================
+   SIMPAN HARI
+========================= */
+
+function saveDay(day){
+
+if(!config)return;
+
+const next=
+nextDay();
+
+
+if(
+Number(day)!==
+Number(next)
+){
+
+alert(
+"⚠️ Tabung hari sebelumnya terlebih dahulu."
+);
+
+return;
+
+}
+
+
+if(dayData(day))return;
+
+
+history.push({
+
+day:Number(day),
+
+saved:true,
+
+date:new Date().toISOString()
+
+});
+
+
+saveStorage();
+
+updateDisplay();
+
+}
+  /* =========================
+   BATAL TABUNGAN
+========================= */
+
+function cancelDay(day){
+
+if(!dayData(day))return;
+
+const yakin=
+confirm(
+"Batalkan tabungan Hari "+
+day+"?"
+);
+
+if(!yakin)return;
+
+
+history=
+history.filter(
+item=>
+Number(item.day)!==
+Number(day)
+);
+
+
+saveStorage();
+
+updateDisplay();
+
+}
+
+
+/* =========================
+   RENDER HARI
+========================= */
+
+function renderDays(){
+
+const list=
+document
+.getElementById(
+"daysList"
+);
+
+list.innerHTML="";
+
+
+const next=
+nextDay();
+
+
+for(
+let i=1;
+i<=config.days;
+i++
+){
+
+const data=
+dayData(i);
+
+
+const div=
+document
+.createElement("div");
+
+
+div.className=
+data
+?"day saved"
+:"day";
+
+
+let action="";
+
+
+if(data){
+
+action=`
+
+<div class="check">
+✓
+</div>
+
+<button
+class="cancel-day"
+onclick="cancelDay(${i})">
+Batal
+</button>
+
+`;
+
+}
+else if(i===next){
+
+action=`
+
+<button
+class="save-day"
+onclick="saveDay(${i})">
+💰 Nabung
+</button>
+
+`;
+
+}
+
+
+div.innerHTML=`
+
+<div class="day-number">
+${i}
+</div>
+
+<div class="day-info">
+
+<b>
+${
+data
+?"✅ Hari "+i
+:"Hari "+i
+}
+</b>
+
+<small>
+${
+data
+?"Tersimpan • "+formatDate(data.date)
+:i===next
+?"Hari berikutnya"
+:"Belum menabung"
+}
+</small>
+
+</div>
+
+${action}
+
+`;
+
+
+list.appendChild(div);
+
+}
+
+}
+
+
+/* =========================
+   GRAFIK
+========================= */
+
+function drawChart(){
+
+const canvas=
+document.getElementById(
+"chart"
+);
+
+const ctx=
+canvas.getContext("2d");
+
+const width=
+canvas.width;
+
+const height=
+canvas.height;
+
+
+ctx.clearRect(
+0,
+0,
+width,
+height
+);
+
+
+/* GRID */
+
+ctx.strokeStyle=
+"rgba(255,255,255,.08)";
+
+ctx.lineWidth=1;
+
+
+for(
+let i=0;
+i<6;
+i++
+){
+
+const y=
+30+
+i*
+(height-60)/5;
+
+
+ctx.beginPath();
+
+ctx.moveTo(
+45,
+y
+);
+
+ctx.lineTo(
+width-20,
+y
+);
+
+ctx.stroke();
+
+}
+
+
+/* DATA */
+
+let values=[];
+
+let total=0;
+
+
+for(
+let i=1;
+i<=config.days;
+i++
+){
+
+if(dayData(i)){
+
+total+=
+config.daily;
+
+}
+
+values.push(total);
+
+}
+
+
+if(values.length<2)return;
+
+
+const max=
+Math.max(
+config.target,
+...values,
+1
+);
+
+
+/* GARIS */
+
+ctx.beginPath();
+
+
+values.forEach(
+function(value,index){
+
+const x=
+45+
+index*
+(width-65)/
+(values.length-1);
+
+
+const y=
+height-30-
+(value/max)*
+(height-60);
+
+
+if(index===0){
+
+ctx.moveTo(
+x,
+y
+);
+
+}else{
+
+ctx.lineTo(
+x,
+y
+);
+
+}
+
+});
+
+
+ctx.lineWidth=4;
+
+ctx.strokeStyle=
+"#00c6ff";
+
+ctx.stroke();
+
+
+/* TITIK */
+
+values.forEach(
+function(value,index){
+
+if(!dayData(index+1))
+return;
+
+
+const x=
+45+
+index*
+(width-65)/
+(values.length-1);
+
+
+const y=
+height-30-
+(value/max)*
+(height-60);
+
+
+ctx.beginPath();
+
+ctx.arc(
+x,
+y,
+4,
+0,
+Math.PI*2
+);
+
+ctx.fillStyle=
+"#ffffff";
+
+ctx.fill();
+
+});
+
+}
+
+
+/* =========================
+   UBAH PENGATURAN
+========================= */
+
+function editSettings(){
+
+if(config){
+
+document
+.getElementById(
+"userName"
+)
+.value=
+config.name;
+
+
+document
+.getElementById(
+"itemName"
+)
+.value=
+config.item;
+
+
+document
+.getElementById(
+"targetMoney"
+)
+.value=
+config.target;
+
+
+document
+.getElementById(
+"targetDays"
+)
+.value=
+config.days;
+
+
+document
+.getElementById(
+"dailyMoney"
+)
+.value=
+config.daily;
+
+}
+
+
+document
+.getElementById(
+"settings"
+)
+.classList
+.remove("hidden");
+
+
+document
+.getElementById(
+"app"
+)
+.classList
+.add("hidden");
+
+}
+
+
+/* =========================
+   RESET
+========================= */
+
+function resetAll(){
+
+const yakin=
+confirm(
+"Yakin ingin menghapus seluruh data tabungan?"
+);
+
+if(!yakin)return;
+
+
+localStorage.removeItem(
+"savingConfig"
+);
+
+localStorage.removeItem(
+"savingHistory"
+);
+
+localStorage.removeItem(
+"ultimateSavingConfig"
+);
+
+localStorage.removeItem(
+"ultimateSavingHistory"
+);
+
+
+config=null;
+
+history=[];
+
+
+document
+.getElementById(
+"app"
+)
+.classList
+.add("hidden");
+
+
+document
+.getElementById(
+"settings"
+)
+.classList
+.remove("hidden");
+
+
+document
+.getElementById(
+"userName"
+)
+.value="";
+
+document
+.getElementById(
+"itemName"
+)
+.value="";
+
+document
+.getElementById(
+"targetMoney"
+)
+.value="";
+
+document
+.getElementById(
+"targetDays"
+)
+.value="";
+
+document
+.getElementById(
+"dailyMoney"
+)
+.value="";
+
+}
+
+
+/* =========================
+   TOMBOL
+========================= */
+
+document
+.getElementById(
+"startButton"
+)
+.addEventListener(
+"click",
+saveSettings
+);
+
+
+document
+.getElementById(
+"editButton"
+)
+.addEventListener(
+"click",
+editSettings
+);
+
+
+document
+.getElementById(
+"resetButton"
+)
+.addEventListener(
+"click",
+resetAll
+);
+
+
+/* =========================
+   ENTER
+========================= */
+
+document
+.querySelectorAll(
+"#settings input"
+)
+.forEach(
+function(input){
+
+input.addEventListener(
+"keydown",
+function(event){
+
+if(
+event.key==="Enter"
+){
+
+saveSettings();
+
+}
+
+});
+
+});
+
+
+/* =========================
+   MULAI APLIKASI
+========================= */
+
+loadStorage();
+
+loadApp();
+
+</script>
+
+</body>
+</html>
